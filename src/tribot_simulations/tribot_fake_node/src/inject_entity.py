@@ -32,15 +32,19 @@ def inject(xml: str, initial_pose: Pose):
     node.destroy_node()
     rclpy.shutdown()
 
-if len(sys.argv) < 5:
-    print('usage: ros2 run tello_gazebo inject_entity.py -- foo.urdf initial_x initial_y initial_z')
+if len(sys.argv) < 3:
+    print('usage: ros2 run tribot_fake_node inject_entity.py -- initial_x initial_y initial_z')
     sys.exit(1)
-
-f = open(sys.argv[1], 'r')
 
 p = Pose()
 p.position.x = float(sys.argv[1])
 p.position.y = float(sys.argv[2])
 p.position.z = float(sys.argv[3])
 
-inject(f.read(), p)
+urdf_file_name = 'tribot.urdf'
+doc = xacro.parse(open(os.path.join(
+    get_package_share_directory('tribot_description'), 'urdf', urdf_file_name)))
+xacro.process_doc(doc)
+urdf = doc.toxml()
+
+inject(urdf, p)

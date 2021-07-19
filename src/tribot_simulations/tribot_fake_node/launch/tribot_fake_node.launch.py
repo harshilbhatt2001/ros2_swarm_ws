@@ -99,12 +99,13 @@ def generate_launch_description():
             description='Specify parameters',
         ),
 
-        #gazebo_launch,
+        gazebo_launch,
         rviz_launch,
         
         tribot_fake_node,
 
-        robot_state_publisher_node,
+        ## Use the inject_entity script, it gives more control
+        #robot_state_publisher_node,
         joint_state_publisher_node,
         robot_spawner_node,
         #robot_localization_node,
