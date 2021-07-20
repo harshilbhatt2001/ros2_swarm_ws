@@ -23,11 +23,11 @@ Control Your Bot!
 ---------------------------
 Moving around:
         w
-   a    s    d
-        x
-w/x : increase/decrease linear velocity (Max : ~ 0.25)
+   a    x    d
+        s
+w/s : increase/decrease linear velocity (Max : ~ 0.25)
 a/d : increase/decrease angular velocity (Max : ~ 1.5)
-space key, s : force stop
+space key, x : force stop
 CTRL-C to quit
 """
 
@@ -108,7 +108,7 @@ def main():
                     check_linear_limit_velocity(target_linear_velocity + LIN_VEL_STEP_SIZE)
                 status = status + 1
                 print_velocity(target_linear_velocity, target_angular_velocity)
-            elif key == 'x':
+            elif key == 's':
                 target_linear_velocity =\
                     check_linear_limit_velocity(target_linear_velocity - LIN_VEL_STEP_SIZE)
                 status = status + 1
@@ -123,7 +123,7 @@ def main():
                     check_angular_limit_velocity(target_angular_velocity - ANG_VEL_STEP_SIZE)
                 status = status + 1
                 print_velocity(target_linear_velocity, target_angular_velocity)
-            elif key == ' ' or key == 's':
+            elif key == ' ' or key == 'x':
                 target_linear_velocity = 0.0
                 control_linear_velocity = 0.0
                 target_angular_velocity = 0.0
