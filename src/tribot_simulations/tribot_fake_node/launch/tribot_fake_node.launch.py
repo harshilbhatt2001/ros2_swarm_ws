@@ -28,7 +28,7 @@ def generate_launch_description():
     # Needs to be false for transform from [base_footprint] to [base_link]
     use_tf_static = LaunchConfiguration('use_tf_static', default='false')
 
-    urdf_file_name = 'tribot.urdf'
+    urdf_file_name = 'tribot.urdf.xacro'
     doc = xacro.parse(open(os.path.join(
         get_package_share_directory('tribot_description'), 'urdf', urdf_file_name)))
     xacro.process_doc(doc)

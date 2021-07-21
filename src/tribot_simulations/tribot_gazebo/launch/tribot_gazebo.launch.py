@@ -13,11 +13,11 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     #pkg_share = FindPackageShare(package='tribot_description').find('tribot_description')
     pkg_share = get_package_share_directory('tribot_description')
-    default_model_path = os.path.join(pkg_share, 'urdf', 'tribot.urdf')
+    default_model_path = os.path.join(pkg_share, 'urdf', 'tribot.urdf.xacro')
 
-    urdf_file_name = 'tribot.urdf'
+    urdf_file_name = 'tribot.urdf.xacro'
     doc = xacro.parse(open(os.path.join(
-        get_package_share_directory('tribot_description'), 'urdf', default_model_path)))
+        get_package_share_directory('tribot_description'), 'urdf', urdf_file_name)))
     xacro.process_doc(doc)
     urdf = doc.toxml()
 

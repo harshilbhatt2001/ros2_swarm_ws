@@ -23,11 +23,11 @@ Control Your Bot!
 ---------------------------
 Moving around:
         w
-   a    s    d
-        x
-w/x : increase/decrease linear velocity (Max : ~ 0.25)
+   a    x    d
+        s
+w/s : increase/decrease linear velocity (Max : ~ 0.25)
 a/d : increase/decrease angular velocity (Max : ~ 1.5)
-space key, s : force stop
+space key, x : force stop
 CTRL-C to quit
 """
 
@@ -76,14 +76,23 @@ def check_angular_limit_velocity(velocity):
     return constrain(velocity, -MAX_ANG_VEL, MAX_ANG_VEL)
 
 def main():
+    if (len(sys.argv) > 2):
+        print('usage: ros2 run tribot_teleop teleop_keyboard -- foo_namespace')
+        sys.exit(1)
+
     settings = termios.tcgetattr(sys.stdin)
 
     rclpy.init()
 
     qos = QoSProfile(depth=10)
     node = rclpy.create_node('teleop_keyboard')
-    pub = node.create_publisher(Twist, 'cmd_vel', qos)
 
+    try:
+        namespace = sys.argv[1]
+        pub = node.create_publisher(Twist, namespace + '/cmd_vel', qos)
+    except:
+        namespace = None
+        pub = node.create_publisher(Twist, 'cmd_vel', qos)
     status = 0
     target_linear_velocity = 0.0
     target_angular_velocity = 0.0
@@ -99,7 +108,7 @@ def main():
                     check_linear_limit_velocity(target_linear_velocity + LIN_VEL_STEP_SIZE)
                 status = status + 1
                 print_velocity(target_linear_velocity, target_angular_velocity)
-            elif key == 'x':
+            elif key == 's':
                 target_linear_velocity =\
                     check_linear_limit_velocity(target_linear_velocity - LIN_VEL_STEP_SIZE)
                 status = status + 1
@@ -114,7 +123,7 @@ def main():
                     check_angular_limit_velocity(target_angular_velocity - ANG_VEL_STEP_SIZE)
                 status = status + 1
                 print_velocity(target_linear_velocity, target_angular_velocity)
-            elif key == ' ' or key == 's':
+            elif key == ' ' or key == 'x':
                 target_linear_velocity = 0.0
                 control_linear_velocity = 0.0
                 target_angular_velocity = 0.0
