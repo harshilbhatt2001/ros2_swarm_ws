@@ -147,7 +147,11 @@
     <sensor name="imu_sensor" type="imu">
       <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
         <ros>
+<<<<<<< HEAD
           <!--namespace>/demo</namespace-->
+=======
+          <namespace>/tribot</namespace>
+>>>>>>> 312569dcf17aafef3f55294d7c365982c37a33af
           <remapping>~/out:=imu</remapping>
         </ros>
         <initial_orientation_as_reference>false</initial_orientation_as_reference>
@@ -267,7 +271,11 @@
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="diff_drive_plugin">
       <ros>
+<<<<<<< HEAD
         <!--namespace>/demo</namespace-->
+=======
+        <namespace>/tribot</namespace>
+>>>>>>> 312569dcf17aafef3f55294d7c365982c37a33af
       </ros>
       <!-- wheels -->
       <left_joint>drivewhl_l_joint</left_joint>
@@ -306,10 +314,19 @@
   <gazebo>
     <plugin filename="libgazebo_ros_linear_battery.so" name="linear_battery_plugin">
       <ros>
+<<<<<<< HEAD
         <!--namespace>/demo</namespace-->
       </ros>
       <link_name>battery_link</link_name>
       <battery_name>battery</battery_name>
+=======
+        <namespace>/tribot</namespace>
+      </ros>
+
+      <link_name>battery_link</link_name>
+      <battery_name>battery</battery_name>
+      
+>>>>>>> 312569dcf17aafef3f55294d7c365982c37a33af
       <voltage>12.592</voltage>
       <open_circuit_voltage_constant_coef>12.694</open_circuit_voltage_constant_coef>
       <open_circuit_voltage_linear_coef>-3.1424</open_circuit_voltage_linear_coef>

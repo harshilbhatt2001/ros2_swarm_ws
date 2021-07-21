@@ -1,6 +1,8 @@
 import os
 from posixpath import join
 import threading
+import launch
+from launch.actions.execute_process import ExecuteProcess
 
 import xacro
 from ament_index_python.packages import get_package_share_directory
@@ -17,7 +19,9 @@ def generate_launch_description():
         default=os.path.join(
             get_package_share_directory('tribot_fake_node'), 'launch')
     ),
-    
+
+    launch_dir = os.path.join(get_package_share_directory('tribot_fake_node'), 'launch')
+    world = os.path.join(get_package_share_directory('tribot_fake_node'), 'worlds', 'turtlebot.world')
     param_dir = LaunchConfiguration(
         'param_dir',
         default=os.path.join(
@@ -35,9 +39,19 @@ def generate_launch_description():
     urdf = doc.toxml()
 
     gazebo_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('gazebo_ros'), 'launch'), '/gazebo.launch.py']),
-            )
+        PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('gazebo_ros'), 'launch'), 
+            '/gazebo.launch.py']),
+        )
+
+    start_gazebo_server = ExecuteProcess(
+        cmd=['gzserver', '-s', world],
+        output='screen'
+    )
+    start_gazebo_client = ExecuteProcess(
+        cmd=['gzclient'], 
+        output='screen'
+    )
+
     rviz_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('tribot_fake_node'), 'launch', 'rviz2.launch.py'))
@@ -101,11 +115,13 @@ def generate_launch_description():
 
         gazebo_launch,
         rviz_launch,
-        
+        #start_gazebo_server,
+        #start_gazebo_client,
+
         tribot_fake_node,
 
         ## Use the inject_entity script, it gives more control
-        #robot_state_publisher_node,
+        robot_state_publisher_node,
         joint_state_publisher_node,
         robot_spawner_node,
         #robot_localization_node,
