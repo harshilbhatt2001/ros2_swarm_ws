@@ -1,4 +1,4 @@
-FROM athackst/ros2:foxy-gazebo
+FROM athackst/ros2:foxy-gazebo-nvidia
 
 # ** [Optional] Uncomment this section to install additional packages. **
 #
