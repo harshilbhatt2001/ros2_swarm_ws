@@ -21,7 +21,7 @@ find_package(rclpy REQUIRED)
 
 
 install(
-  DIRECTORY urdf launch
+  DIRECTORY urdf launch params
   DESTINATION share/${PROJECT_NAME}
 )
 

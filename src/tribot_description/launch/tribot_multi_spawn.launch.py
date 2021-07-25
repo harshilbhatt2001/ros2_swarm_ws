@@ -1,4 +1,5 @@
 import os
+import yaml
 from launch.substitutions.text_substitution import TextSubstitution
 import xacro
 from ament_index_python.packages import get_package_share_directory
@@ -8,17 +9,22 @@ from launch.launch_description_source import LaunchDescriptionSource
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 # TODO: Take robot initial positions from a text file 
-def generate_robot_list(number_of_robots):
-    robots = []
-    for i in range(number_of_robots):
-        robot_name = "tribot" + str(i)
-        x_pos = float(i)
-        robots.append({'name': robot_name,
-                       'x_pose': x_pos,
-                       'y_pose': 0.0,
-                       'z_pose': 0.01})
-    return robots
+#def generate_robot_list(number_of_robots):
+#    robots = []
+#    for i in range(number_of_robots):
+#        robot_name = "tribot" + str(i)
+#        x_pos = float(i)
+#        robots.append({'name': robot_name,
+#                       'x_pose': x_pos,
+#                       'y_pose': 0.0,
+#                       'z_pose': 0.01})
+#    return robots
 
+def generate_robot_list(robots_file):
+    robots = []
+    with open(robots_file, 'r') as stream:
+        robots = yaml.safe_load(stream)
+    return robots
 
 def generate_urdf():
     urdf_file_name = 'tribot.urdf.xacro'
@@ -31,7 +37,7 @@ def generate_urdf():
 
 def generate_launch_description():
     urdf = os.path.join(get_package_share_directory('tribot_description'), 'urdf', 'tribot.urdf')
-    robots = generate_robot_list(5)
+    robots = generate_robot_list(os.path.join(get_package_share_directory('tribot_description'), 'params', 'spawn_params.yaml'))
     spawn_robots_cmds = []
 
     for robot in robots:
