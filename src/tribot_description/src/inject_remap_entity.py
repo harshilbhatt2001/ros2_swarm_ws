@@ -33,6 +33,8 @@ def main():
                         help='y component of initial position [meters]')
     parser.add_argument('-z', type=float, default=0,
                         help='z component of initial position [meters]')
+    parser.add_argument('-yaw', type=float, default=0,
+                        help='Yaw component of initial position [radians]')
     args, unknown = parser.parse_known_args()
 
     rclpy.init()
@@ -82,6 +84,7 @@ def main():
     request.initial_pose.position.x = float(args.x)
     request.initial_pose.position.y = float(args.y)
     request.initial_pose.position.z = float(args.z)
+    request.initial_pose.orientation.x = float(args.yaw)
 
     if (args.namespace):
         node.get_logger().info('spawning `{}` on namespace `{}` at {}, {}, {}'.format(

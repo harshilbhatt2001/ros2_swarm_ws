@@ -12,14 +12,14 @@
   x_pose: 0.5
   y_pose: 0.0
   z_pose: 0.01
-  yaw_pose: 0.00
+  yaw_pose: 0.5
 - name: 'tri4'
   x_pose: -0.5
   y_pose: 0.0
   z_pose: 0.01
-  yaw_pose: 0.00
+  yaw_pose: 5
 - name: 'tri5'
   x_pose: -0.5
   y_pose: 1.5
   z_pose: 0.01
-  yaw_pose: 0.00
+  yaw_pose: -0.5

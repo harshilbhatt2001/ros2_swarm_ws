@@ -123,7 +123,7 @@ def generate_launch_description():
         ## Use the inject_entity script, it gives more control
         robot_state_publisher_node,
         joint_state_publisher_node,
-        robot_spawner_node,
+        #robot_spawner_node,
         #robot_localization_node,
     ])
     

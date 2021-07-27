@@ -10,8 +10,6 @@
 	"runArgs": [
 		"--gpus=all",
 		"--device=/dev/nvidia0", 
-		"--device=/dev/nvidia-uvm",
-		"--device=/dev/nvidia-uvm-tools", 
 		"--device=/dev/nvidiactl",
 		"--network=host",
 		"--cap-add=SYS_PTRACE",
