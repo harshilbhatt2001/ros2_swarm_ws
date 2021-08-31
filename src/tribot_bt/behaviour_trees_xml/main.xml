@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Sequence>
+            <Action Flag="1" ID="GoToCluster"/>
+            <Sequence>
+                <Condition ID="IsFlagHigh"/>
+                <Action ID="Rearrange"/>
+            </Sequence>
+            <Repeat num_cycles="">
+                <Sequence>
+                    <RetryUntilSuccesful num_attempts="">
+                        <Switch2 case_1="&gt;=Thresh" case_2="&lt;Thresh" variable="Charge">
+                            <AlwaysSuccess/>
+                            <AlwaysFailure/>
+                        </Switch2>
+                    </RetryUntilSuccesful>
+                    <Switch2 case_1="=0" case_2="&gt;0" variable="i">
+                        <Action I="n" ID="GoToPose"/>
+                        <Action I="i-1" ID="GoToPose"/>
+                    </Switch2>
+                </Sequence>
+            </Repeat>
+        </Sequence>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Action ID="GoToCluster">
+            <output_port name="Flag"/>
+        </Action>
+        <Action ID="GoToPose">
+            <input_port name="I"/>
+        </Action>
+        <Condition ID="IsFlagHigh"/>
+        <Action ID="Rearrange"/>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
