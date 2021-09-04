@@ -18,9 +18,8 @@ IsBatteryLowCondition::IsBatteryLowCondition(
     getInput("is_voltage", is_voltage_);
     node_ = config().blackboard->get<rclcpp::Node::SharedPtr>("node");
     callback_group_ = node_->create_callback_group(
-        rclcpp::CallbackGroupType::MutuallyExclusive,
-        false);
-    callback_group_executor_.add_callback_group(callback_group_, node_->get_node_base_interface());
+        rclcpp::CallbackGroupType::MutuallyExclusive);
+    callback_group_executor_.add_node(node_);
 
     rclcpp::SubscriptionOptions sub_option;
     sub_option.callback_group = callback_group_;
