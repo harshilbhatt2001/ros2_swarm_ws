@@ -35,8 +35,8 @@ set(dependencies
 
 include_directories(include)
 
-add_library(amazon_robot_move_bt_node SHARED src/behaviour_tree_nodes/move.cpp)
-list(APPEND plugin_libs amazon_robot_move_bt_node)
+add_library(tribot_move_bt_node SHARED src/behaviour_tree_nodes/move.cpp)
+list(APPEND plugin_libs tribot_move_bt_node)
 
 foreach(bt_plugin ${plugin_libs})
   ament_target_dependencies(${bt_plugin} ${dependencies})

@@ -3,7 +3,10 @@
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
         <Sequence>
-            <Action Flag="1" ID="GoToCluster"/>
+            <Sequence name="">
+                <Action ID="ComputePathToPose" goal="${goal}"/>
+                <Action ID="FollowPath" path="${path}" controller_property="FollowPath"/>
+            </Sequence>
             <Sequence>
                 <Condition ID="IsFlagHigh"/>
                 <Action ID="Rearrange"/>
@@ -26,6 +29,12 @@
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
+        <Action ID="ComputePathToPose">
+            <input_port name="goal"/>
+        </Action>
+        <Action ID="FollowPath">
+            <input_port name="path"/>
+        </Action>
         <Action ID="GoToCluster">
             <output_port name="Flag"/>
         </Action>
