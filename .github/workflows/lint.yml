@@ -21,4 +21,4 @@ jobs:
       - uses: ros-tooling/action-ros2-lint@0.0.6
         with:
           linter: ${{ matrix.linter }}
-          package-name: cpp_template_pkg
+          package-name: src/*
