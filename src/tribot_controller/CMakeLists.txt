@@ -26,8 +26,16 @@ find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(nav2_util REQUIRED)
 
+set(executable_name robot_controller)
+set (library_name ${executable_name}_core)
+
 include_directories(
   include
+)
+
+add_library(${library_name} SHARED
+  src/robot_controller.cpp
+  src/ros_topic_logger.cpp
 )
 
 set(dependencies
@@ -54,10 +62,17 @@ list(APPEND plugin_libs nav2_is_battery_low_condition_bt_node)
 add_library(nav2_is_flag_high_condition_bt_node SHARED plugins/condition/is_flag_high_condition.cpp)
 list(APPEND plugin_libs nav2_is_flag_high_condition_bt_node)
 
+# add_library(nav2_follow_path_action_bt_node SHARED plugins/action/follow_path_action.cpp)
+# list(APPEND plugin_libs nav2_follow_path_action_bt_node)
+
 foreach(bt_plugin ${plugin_libs})
   ament_target_dependencies(${bt_plugin} ${dependencies})
   target_compile_definitions(${bt_plugin} PRIVATE BT_PLUGIN_EXPORT)
 endforeach()
+
+ament_target_dependencies(${library_name}
+  ${dependencies}
+)
 
 install(TARGETS ${library_name}
                 ${plugin_libs}
@@ -81,5 +96,11 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+ament_export_include_directories(include)
+
+ament_export_libraries(
+  ${plugin_libs}
+)
 
 ament_package()
