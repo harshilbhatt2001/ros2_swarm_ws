@@ -27,7 +27,7 @@ find_package(tf2_geometry_msgs REQUIRED)
 find_package(nav2_util REQUIRED)
 
 set(executable_name robot_controller)
-set (library_name ${executable_name}_core)
+set(library_name ${executable_name}_core)
 
 include_directories(
   include

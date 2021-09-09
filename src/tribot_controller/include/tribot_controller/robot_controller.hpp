@@ -22,40 +22,40 @@ namespace tribot_controller
 class TribotController : public nav2_util::LifecycleNode
 {
 public:
-    explicit TribotController(bool use_bond = true);
-    ~TribotController();
+  explicit TribotController(bool use_bond = true);
+  ~TribotController();
 
 protected:
-    nav2_util::CallbackReturn on_configure(const rclcpp_lifecycle::State &state) override;
-    nav2_util::CallbackReturn on_activate(const rclcpp_lifecycle::State &state) override;
-    nav2_util::CallbackReturn on_deactivate(const rclcpp_lifecycle::State &state) override;
-    nav2_util::CallbackReturn on_cleanup(const rclcpp_lifecycle::State &state) override;
-    nav2_util::CallbackReturn on_shutdown(const rclcpp_lifecycle::State &state) override;
+  nav2_util::CallbackReturn on_configure(const rclcpp_lifecycle::State & state) override;
+  nav2_util::CallbackReturn on_activate(const rclcpp_lifecycle::State & state) override;
+  nav2_util::CallbackReturn on_deactivate(const rclcpp_lifecycle::State & state) override;
+  nav2_util::CallbackReturn on_cleanup(const rclcpp_lifecycle::State & state) override;
+  nav2_util::CallbackReturn on_shutdown(const rclcpp_lifecycle::State & state) override;
 
-    // TODO: Add a custom action for clustering
-    using Action = nav2_msgs::action::FollowPath;
+  // TODO: Add a custom action for clustering
+  using Action = nav2_msgs::action::FollowPath;
 
-    using ActionServer = nav2_util::SimpleActionServer<Action>;
+  using ActionServer = nav2_util::SimpleActionServer<Action>;
 
-    std::unique_ptr<ActionServer> action_server_;
+  std::unique_ptr<ActionServer> action_server_;
 
-    /**
-     * @brief Action server callbacks
-     */
-    void followPath();
+  /**
+   * @brief Action server callbacks
+   */
+  void followPath();
 
-    void initializeBlackboard(std::shared_ptr<const Action::Goal> goal);
-    
-    bool loadBehaviorTree(const std::string &bt_id);
+  void initializeBlackboard(std::shared_ptr<const Action::Goal> goal);
 
-    BT::Tree tree_;
-    BT::Blackboard::Ptr blackboard_;
-    std::string xml_string_;
-    std::unique_ptr<nav2_behavior_tree::BehaviorTreeEngine> bt_;
-    std::vector<std::string> plugin_lib_name_;
-    rclcpp::Node::SharedPtr client_node_;
+  bool loadBehaviorTree(const std::string & bt_id);
 
-    bool use_bond_;
+  BT::Tree tree_;
+  BT::Blackboard::Ptr blackboard_;
+  std::string xml_string_;
+  std::unique_ptr<nav2_behavior_tree::BehaviorTreeEngine> bt_;
+  std::vector<std::string> plugin_lib_name_;
+  rclcpp::Node::SharedPtr client_node_;
+
+  bool use_bond_;
 };
 } // namespace tribot_controller
 

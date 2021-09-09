@@ -12,22 +12,22 @@ namespace nav2_behavior_tree
 class GoalUpdatedCondition : public BT::ConditionNode
 {
 public:
-    GoalUpdatedCondition(
-        const std::string &condition_name,
-        const BT::NodeConfiguration &conf);
-    
-    GoalUpdatedCondition() = delete;
+  GoalUpdatedCondition(
+    const std::string & condition_name,
+    const BT::NodeConfiguration & conf);
 
-    BT::NodeStatus tick() override;
+  GoalUpdatedCondition() = delete;
 
-    static BT::PortsList providedPorts()
-    {
-        return {};
-    }
+  BT::NodeStatus tick() override;
+
+  static BT::PortsList providedPorts()
+  {
+    return {};
+  }
 
 private:
-    geometry_msgs::msg::PoseStamped goal_;
-    std::vector<geometry_msgs::msg::PoseStamped> goals_;
+  geometry_msgs::msg::PoseStamped goal_;
+  std::vector<geometry_msgs::msg::PoseStamped> goals_;
 
 };
 } // namespace nav2_behavior_tree

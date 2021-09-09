@@ -15,28 +15,27 @@ namespace nav2_behavior_tree
 class Move : public BtActionNode<nav2_msgs::action::NavigateToPose>
 {
 public:
-    Move(
-        const std::string & xml_tag_name,
-        const std::string & action_name,
-        const BT::NodeConfiguration & conf);
+  Move(
+    const std::string & xml_tag_name,
+    const std::string & action_name,
+    const BT::NodeConfiguration & conf);
 
-    void on_tick() override;
-    // BT::NodeStatus on_success() override;
+  void on_tick() override;
+  // BT::NodeStatus on_success() override;
 
-    static BT::PortsList providedPorts()
-    {
-        return providedBasicPorts(
-            {
-                BT::InputPort<std::string>("goal", "Pallet ID"),
+  static BT::PortsList providedPorts()
+  {
+    return providedBasicPorts(
+      {
+        BT::InputPort<std::string>("goal", "Pallet ID"),
 
-                // BT::InputPort<geometry_msgs::msg::PoseStamped>("goal", "Destination to plan to"),
-            });
-    }
-
+        // BT::InputPort<geometry_msgs::msg::PoseStamped>("goal", "Destination to plan to"),
+      });
+  }
 
 private:
-    int goal_reached_;
-    std::map<std::string, geometry_msgs::msg::Pose> waypoints_;
+  int goal_reached_;
+  std::map<std::string, geometry_msgs::msg::Pose> waypoints_;
 };
 
 } // namespace nav2_behavior_tree
