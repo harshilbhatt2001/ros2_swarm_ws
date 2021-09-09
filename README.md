@@ -1,5 +1,6 @@
 # ros2_swarm
-
+[![Build](https://github.com/Mars-Rover-Manipal/ros2_swarm_ws/actions/workflows/ros2-ci.yml/badge.svg)](https://github.com/Mars-Rover-Manipal/ros2_swarm_ws/actions/workflows/ros2-ci.yml)
+[![Lint ROS2 package](https://github.com/Mars-Rover-Manipal/ros2_swarm_ws/actions/workflows/lint.yml/badge.svg)](https://github.com/Mars-Rover-Manipal/ros2_swarm_ws/actions/workflows/lint.yml)
 ## Nav2 TODO
 
 - [ ] load, serve, and store maps (Map Server)
