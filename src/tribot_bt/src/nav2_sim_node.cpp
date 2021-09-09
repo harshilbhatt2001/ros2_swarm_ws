@@ -8,25 +8,25 @@
 class Nav2Sim : public rclcpp::Node
 {
 public:
-    using NavigateToPose = nav2_msgs::action::NavigateToPose;
-    using GoalHandleNavigateToPose = rclcpp_action::ServerGoalHandle<NavigateToPose>;
+  using NavigateToPose = nav2_msgs::action::NavigateToPose;
+  using GoalHandleNavigateToPose = rclcpp_action::ServerGoalHandle<NavigateToPose>;
 
-    Nav2Sim() 
-    : Node("navigate_to_pose_server")
-    {
-    }
+  Nav2Sim()
+  : Node("navigate_to_pose_server")
+  {
+  }
 
-    void start_server()
-    {
-        RCLCPP_INFO(get_logger(), "starting server");
-        repeat_sentence_action_server_ = rclcpp_action::create_server<NavigateToPose>(
-            shared_from_this(),
-            "navigate_to_pose2",
-            std::bind(&Nav2Sim::handle_goal, this, std::placeholders::_1, std::placeholders::_2),
-            std::bind(&Nav2Sim::handle_cancel, this, std::placeholders::_1),
-            std::bind(&Nav2Sim::handle_accepted, this, std::placeholders::_1));
+  void start_server()
+  {
+    RCLCPP_INFO(get_logger(), "starting server");
+    repeat_sentence_action_server_ = rclcpp_action::create_server<NavigateToPose>(
+      shared_from_this(),
+      "navigate_to_pose2",
+      std::bind(&Nav2Sim::handle_goal, this, std::placeholders::_1, std::placeholders::_2),
+      std::bind(&Nav2Sim::handle_cancel, this, std::placeholders::_1),
+      std::bind(&Nav2Sim::handle_accepted, this, std::placeholders::_1));
 
-        RCLCPP_INFO(get_logger(), "Ready.");
+    RCLCPP_INFO(get_logger(), "Ready.");
   }
 
 private:
@@ -94,15 +94,15 @@ private:
 
 int main(int argc, char ** argv)
 {
-    rclcpp::init(argc, argv);
+  rclcpp::init(argc, argv);
 
-    auto node = std::make_shared<Nav2Sim>();
+  auto node = std::make_shared<Nav2Sim>();
 
-    node->start_server();
+  node->start_server();
 
-    rclcpp::spin(node);
+  rclcpp::spin(node);
 
-    rclcpp::shutdown();
+  rclcpp::shutdown();
 
-    return 0;
+  return 0;
 }

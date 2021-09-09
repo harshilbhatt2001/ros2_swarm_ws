@@ -10,81 +10,77 @@ namespace nav2_behavior_tree
 {
 
 Move::Move(
-    const std::string & xml_tag_name,
-    const std::string & action_name,
-    const BT::NodeConfiguration & conf)
-  : BtActionNode<nav2_msgs::action::NavigateToPose>(xml_tag_name, action_name, conf)
+  const std::string & xml_tag_name,
+  const std::string & action_name,
+  const BT::NodeConfiguration & conf)
+: BtActionNode<nav2_msgs::action::NavigateToPose>(xml_tag_name, action_name, conf)
 {
-    // rclcpp::Node::SharedPtr node;
-    // config().blackboard->get("node", node);
+  // rclcpp::Node::SharedPtr node;
+  // config().blackboard->get("node", node);
 
-    // node->declare_parameter("waypoints");
-    // node->declare_parameter("waypoint_coords");
+  // node->declare_parameter("waypoints");
+  // node->declare_parameter("waypoint_coords");
 
-    // if (node->has_parameter("waypoints")) {
-    //     std::vector<std::string> wp_names;
+  // if (node->has_parameter("waypoints")) {
+  //     std::vector<std::string> wp_names;
 
-    // node->get_parameter_or("waypoints", wp_names, {});
+  // node->get_parameter_or("waypoints", wp_names, {});
 
-    // for (auto & wp : wp_names) {
-    //     node->declare_parameter("waypoint_coords." + wp);
+  // for (auto & wp : wp_names) {
+  //     node->declare_parameter("waypoint_coords." + wp);
 
-    //     std::vector<double> coords;
-    //     if (node->get_parameter_or("waypoint_coords." + wp, coords, {})) {
-    //     geometry_msgs::msg::Pose2D pose;
-    //     pose.x = coords[0];
-    //     pose.y = coords[1];
-    //     pose.theta = coords[2];
+  //     std::vector<double> coords;
+  //     if (node->get_parameter_or("waypoint_coords." + wp, coords, {})) {
+  //     geometry_msgs::msg::Pose2D pose;
+  //     pose.x = coords[0];
+  //     pose.y = coords[1];
+  //     pose.theta = coords[2];
 
-    //     waypoints_[wp] = pose;
-    //     } else {
-    //     std::cerr << "No coordinate configured for waypoint [" << wp << "]" << std::endl;
-    //     }
-    // }
-    // }
+  //     waypoints_[wp] = pose;
+  //     } else {
+  //     std::cerr << "No coordinate configured for waypoint [" << wp << "]" << std::endl;
+  //     }
+  // }
+  // }
 
-    rclcpp::Node::SharedPtr node;
-    config().blackboard->get("node", node);
+  rclcpp::Node::SharedPtr node;
+  config().blackboard->get("node", node);
 
-    node->declare_parameter("waypoints");
-    node->declare_parameter("waypoint_coords");
+  node->declare_parameter("waypoints");
+  node->declare_parameter("waypoint_coords");
 
-    if (node->has_parameter("waypoints")) 
-    {
-        std::vector<std::string> wp_names;
+  if (node->has_parameter("waypoints")) {
+    std::vector<std::string> wp_names;
 
-        node->get_parameter_or("waypoints", wp_names, {});
+    node->get_parameter_or("waypoints", wp_names, {});
 
-        for (auto & wp : wp_names) 
-        {
-            node->declare_parameter("waypoint_coords." + wp);
+    for (auto & wp : wp_names) {
+      node->declare_parameter("waypoint_coords." + wp);
 
-            std::vector<double> coords;
-            if (node->get_parameter_or("waypoint_coords." + wp, coords, {})) 
-            {
-                geometry_msgs::msg::Pose pose;
-                pose.position.x = coords[0];
-                pose.position.y = coords[1];
-                // pose.point.theta = coords[2];
+      std::vector<double> coords;
+      if (node->get_parameter_or("waypoint_coords." + wp, coords, {})) {
+        geometry_msgs::msg::Pose pose;
+        pose.position.x = coords[0];
+        pose.position.y = coords[1];
+        // pose.point.theta = coords[2];
 
-                waypoints_[wp] = pose;
-            } else {
-                std::cerr << "No coordinate configured for waypoint [" << wp << "]" << std::endl;
-            }
-        }   
+        waypoints_[wp] = pose;
+      } else {
+        std::cerr << "No coordinate configured for waypoint [" << wp << "]" << std::endl;
+      }
     }
+  }
 }
 
 void
 Move::on_tick()
 {
-    if (!getInput("goal", goal_.pose)) 
-    {
-        RCLCPP_ERROR(
-            node_->get_logger(),
-            "NavigateToPoseAction: goal not provided");
-        return;
-    }
+  if (!getInput("goal", goal_.pose)) {
+    RCLCPP_ERROR(
+      node_->get_logger(),
+      "NavigateToPoseAction: goal not provided");
+    return;
+  }
 
 
   // std::string goal;
@@ -120,13 +116,13 @@ Move::on_tick()
 #include "behaviortree_cpp_v3/bt_factory.h"
 BT_REGISTER_NODES(factory)
 {
-    BT::NodeBuilder builder =
-        [](const std::string & name, const BT::NodeConfiguration & config)
-        {
-            return std::make_unique<nav2_behavior_tree::Move>(
-                name, "move_to_pallet", config);
-        };
+  BT::NodeBuilder builder =
+    [](const std::string & name, const BT::NodeConfiguration & config)
+    {
+      return std::make_unique<nav2_behavior_tree::Move>(
+        name, "move_to_pallet", config);
+    };
 
-    factory.registerBuilder<nav2_behavior_tree::Move>(
-        "Move", builder);
+  factory.registerBuilder<nav2_behavior_tree::Move>(
+    "Move", builder);
 }

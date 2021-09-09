@@ -13,31 +13,31 @@ namespace nav2_behavior_tree
 class IsFlagHighCondition : public BT::ConditionNode
 {
 public:
-    IsFlagHighCondition(
-        const std::string &condition_name,
-        const BT::NodeConfiguration &conf);
-    
-    IsFlagHighCondition() = delete;
+  IsFlagHighCondition(
+    const std::string & condition_name,
+    const BT::NodeConfiguration & conf);
 
-    BT::NodeStatus tick() override;
-    
-    static BT::PortsList providedPorts()
-    {
-        return {
-            BT::InputPort<bool>("rearrange_flag", false, "True if bots need to rearrange after charging"),
-            BT::InputPort<std::string>("/rearrange_flag", "Rearrange Flag Topic")
-        };
-    }
+  IsFlagHighCondition() = delete;
+
+  BT::NodeStatus tick() override;
+
+  static BT::PortsList providedPorts()
+  {
+    return {
+      BT::InputPort<bool>("rearrange_flag", false, "True if bots need to rearrange after charging"),
+      BT::InputPort<std::string>("/rearrange_flag", "Rearrange Flag Topic")
+    };
+  }
 
 private:
-    void flagCallback(std_msgs::msg::Bool::SharedPtr msg);
+  void flagCallback(std_msgs::msg::Bool::SharedPtr msg);
 
-    rclcpp::Node::SharedPtr node_;
-    rclcpp::CallbackGroup::SharedPtr callback_group_;
-    rclcpp::executors::SingleThreadedExecutor callback_group_executor_;
-    std::string rearrange_flag_topic_;
-    rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr flag_sub_;
-    bool is_flag_high_;
+  rclcpp::Node::SharedPtr node_;
+  rclcpp::CallbackGroup::SharedPtr callback_group_;
+  rclcpp::executors::SingleThreadedExecutor callback_group_executor_;
+  std::string rearrange_flag_topic_;
+  rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr flag_sub_;
+  bool is_flag_high_;
 };
 } // namespace nav2_behavior_tree
 

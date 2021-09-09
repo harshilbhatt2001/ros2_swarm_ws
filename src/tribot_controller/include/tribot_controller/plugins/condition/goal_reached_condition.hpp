@@ -14,39 +14,39 @@ namespace nav2_behavior_tree
 class GoalReachedCondition : public BT::ConditionNode
 {
 public:
-    GoalReachedCondition(
-        const std::string & condition_name,
-        const BT::NodeConfiguration & conf);
+  GoalReachedCondition(
+    const std::string & condition_name,
+    const BT::NodeConfiguration & conf);
 
-    GoalReachedCondition() = delete;
+  GoalReachedCondition() = delete;
 
-    ~GoalReachedCondition() override;
+  ~GoalReachedCondition() override;
 
-    BT::NodeStatus tick() override;
+  BT::NodeStatus tick() override;
 
-    bool isGoalReached();
+  bool isGoalReached();
 
-    static BT::PortsList providedPorts()
-    {
-        return {
-            BT::InputPort<geometry_msgs::msg::PoseStamped>("goal", "Destination"),
-            BT::InputPort<std::string>("global_frame", std::string("map"), "Global frame"),
-            BT::InputPort<std::string>("robot_base_frame", std::string("base_link"), "Robot base frame")
-        };
-    }
+  static BT::PortsList providedPorts()
+  {
+    return {
+      BT::InputPort<geometry_msgs::msg::PoseStamped>("goal", "Destination"),
+      BT::InputPort<std::string>("global_frame", std::string("map"), "Global frame"),
+      BT::InputPort<std::string>("robot_base_frame", std::string("base_link"), "Robot base frame")
+    };
+  }
 
 protected:
-    void cleanup()
-    {}
+  void cleanup()
+  {}
 
 private:
-    rclcpp::Node::SharedPtr node_;
-    std::shared_ptr<tf2_ros::Buffer> tf_;
+  rclcpp::Node::SharedPtr node_;
+  std::shared_ptr<tf2_ros::Buffer> tf_;
 
-    double goal_reached_tol_;
-    std::string global_frame_;
-    std::string robot_base_frame_;
-    double transform_tolerance_;
+  double goal_reached_tol_;
+  std::string global_frame_;
+  std::string robot_base_frame_;
+  double transform_tolerance_;
 
 };
 } // namespace nav2_behavior_tree
