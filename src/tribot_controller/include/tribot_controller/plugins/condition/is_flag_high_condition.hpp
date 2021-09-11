@@ -39,6 +39,6 @@ private:
   rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr flag_sub_;
   bool is_flag_high_;
 };
-} // namespace nav2_behavior_tree
+}  // namespace nav2_behavior_tree
 
-#endif // TRIBOT_CONTROLLER__PLUGINS__CONDITION__IS_FLAG_HIGH_CONDITION_HPP_
+#endif  // TRIBOT_CONTROLLER__PLUGINS__CONDITION__IS_FLAG_HIGH_CONDITION_HPP_

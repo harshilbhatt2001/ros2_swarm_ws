@@ -1,7 +1,8 @@
-#include <string>
-#include <map>
+#ifndef TRIBOT_BT__MOVE_HPP_
+#define TRIBOT_BT__MOVE_HPP_
 
 #include <string>
+#include <map>
 
 #include "geometry_msgs/msg/point.hpp"
 #include "geometry_msgs/msg/quaternion.hpp"
@@ -38,4 +39,6 @@ private:
   std::map<std::string, geometry_msgs::msg::Pose> waypoints_;
 };
 
-} // namespace nav2_behavior_tree
+}  // namespace nav2_behavior_tree
+
+#endif  // TRIBOT_BT__MOVE_HPP_

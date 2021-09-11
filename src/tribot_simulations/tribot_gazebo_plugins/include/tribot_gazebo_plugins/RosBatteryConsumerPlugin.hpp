@@ -1,10 +1,11 @@
-#ifndef ROS_BATTERY_CONSUMER_PLUGIN_HPP
-#define ROS_BATTERY_CONSUMER_PLUGIN_HPP
+#ifndef TRIBOT_GAZEBO_PLUGINS__ROSBATTERYCONSUMERPLUGIN_HPP_
+#define TRIBOT_GAZEBO_PLUGINS__ROSBATTERYCONSUMERPLUGIN_HPP_
+
+#include <sdf/sdf.hh>
 
 #include <string>
 #include <map>
 
-#include <sdf/sdf.hh>
 #include "gazebo/common/Plugin.hh"
 #include "gazebo/common/CommonTypes.hh"
 #include "gazebo/physics/physics.hh"
@@ -51,9 +52,8 @@ protected:
   std::string link_name_;
   /// \brief battery model name
   std::string battery_name_;
-
 };
 
-} // namespace gazebo
+}  // namespace gazebo
 
-#endif /* ROS_BATTERY_CONSUMER_PLUGIN_HPP */
+#endif  // TRIBOT_GAZEBO_PLUGINS__ROSBATTERYCONSUMERPLUGIN_HPP_

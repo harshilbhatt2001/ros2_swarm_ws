@@ -88,7 +88,7 @@
             "label": "cpplint",
             "detail": "Lint files with cpplint.",
             "type": "shell",
-            "command": "ament_cpplint src/",
+            "command": "ament_cpplint src/ --filter=-legal/copyright",
             "presentation": {
                 "panel": "dedicated",
                 "reveal": "silent",

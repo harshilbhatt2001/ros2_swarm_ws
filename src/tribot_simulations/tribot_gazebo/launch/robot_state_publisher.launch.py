@@ -14,9 +14,9 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     pkg_share = get_package_share_directory('tribot_description')
     default_model_path = os.path.join(pkg_share, 'urdf', 'tribot.urdf')
-    
+
     urdf_file_name = 'tribot.urdf.xacro'
-    
+
     doc = xacro.parse(open(os.path.join(
         get_package_share_directory('tribot_description'), 'urdf', default_model_path)))
     xacro.process_doc(doc)

@@ -1,5 +1,5 @@
-#ifndef TRIBOT_CONTROLLER__PLUGINS__CONDITION__IS_GOAL_REACHED_CONDITION_HPP_
-#define TRIBOT_CONTROLLER__PLUGINS__CONDITION__IS_GOAL_REACHED_CONDITION_HPP_
+#ifndef TRIBOT_CONTROLLER__PLUGINS__CONDITION__GOAL_REACHED_CONDITION_HPP_
+#define TRIBOT_CONTROLLER__PLUGINS__CONDITION__GOAL_REACHED_CONDITION_HPP_
 
 #include <string>
 #include <memory>
@@ -47,8 +47,7 @@ private:
   std::string global_frame_;
   std::string robot_base_frame_;
   double transform_tolerance_;
-
 };
-} // namespace nav2_behavior_tree
+}  // namespace nav2_behavior_tree
 
-#endif // TRIBOT_CONTROLLER__PLUGINS__CONDITION__IS_GOAL_REACHED_CONDITION_HPP_
+#endif  // TRIBOT_CONTROLLER__PLUGINS__CONDITION__GOAL_REACHED_CONDITION_HPP_

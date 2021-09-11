@@ -59,7 +59,7 @@ bool GoalReachedCondition::isGoalReached()
   return (dx * dx + dy * dy) <= (goal_reached_tol_ * goal_reached_tol_);
 }
 
-} // namespace nav2_behavior_tree
+}  // namespace nav2_behavior_tree
 
 #include "behaviortree_cpp_v3/bt_factory.h"
 BT_REGISTER_NODES(factory)

@@ -1,3 +1,6 @@
+#ifndef TRIBOT_CONTROLLER__ROS_TOPIC_LOGGER_HPP_
+#define TRIBOT_CONTROLLER__ROS_TOPIC_LOGGER_HPP_
+
 #include <vector>
 #include "behaviortree_cpp_v3/loggers/abstract_logger.h"
 #include "rclcpp/rclcpp.hpp"
@@ -27,3 +30,5 @@ protected:
 };
 
 }   // namespace tribot_controller
+
+#endif  // TRIBOT_CONTROLLER__ROS_TOPIC_LOGGER_HPP_

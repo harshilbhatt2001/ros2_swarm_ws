@@ -1,5 +1,6 @@
 #include <string>
 #include <memory>
+#include <vector>
 
 #include "tribot_controller/plugins/condition/goal_updated_condition.hpp"
 
@@ -34,7 +35,7 @@ BT::NodeStatus GoalUpdatedCondition::tick()
   return BT::NodeStatus::FAILURE;
 }
 
-} // namespace nav2_behavior_tree
+}  // namespace nav2_behavior_tree
 
 #include "behaviortree_cpp_v3/bt_factory.h"
 BT_REGISTER_NODES(factory)

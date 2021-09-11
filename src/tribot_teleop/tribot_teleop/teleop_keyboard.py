@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 
-import os
 import select
 import sys
 import rclpy
 
 from geometry_msgs.msg import Twist
-from rclpy import qos
 from rclpy.qos import QoSProfile
 
 import termios
@@ -35,6 +33,7 @@ err = """
 Communications Failed!
 """
 
+
 def get_key(settings):
     tty.setraw(sys.stdin.fileno())
     rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
@@ -46,8 +45,11 @@ def get_key(settings):
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
     return key
 
+
 def print_velocity(target_linear_velocity, target_angular_velocity):
-    print('currently:\tlinear velocity {0}\t angular velocity {1} '.format(target_linear_velocity, target_angular_velocity))
+    print('currently:\tlinear velocity {0}\t angular velocity {1} '
+          .format(target_linear_velocity, target_angular_velocity))
+
 
 def make_simple_profile(output, input, slope):
     if input > output:
@@ -56,24 +58,28 @@ def make_simple_profile(output, input, slope):
         output = max(input, output - slope)
     else:
         output = input
-    
+
     return output
+
 
 def constrain(input_vel, low_bound, high_bound):
     if input_vel < low_bound:
         input_vel = low_bound
     elif input_vel > high_bound:
         input_vel = high_bound
-    else: 
+    else:
         input_vel = input_vel
-    
+
     return input_vel
+
 
 def check_linear_limit_velocity(velocity):
     return constrain(velocity, -MAX_LIN_VEL, MAX_LIN_VEL)
 
+
 def check_angular_limit_velocity(velocity):
     return constrain(velocity, -MAX_ANG_VEL, MAX_ANG_VEL)
+
 
 def main():
     if (len(sys.argv) > 2):
@@ -90,7 +96,7 @@ def main():
     try:
         namespace = sys.argv[1]
         pub = node.create_publisher(Twist, namespace + '/cmd_vel', qos)
-    except:
+    except Exception:
         namespace = None
         pub = node.create_publisher(Twist, 'cmd_vel', qos)
     status = 0

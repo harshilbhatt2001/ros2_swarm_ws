@@ -6,6 +6,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <set>
 
 #include "nav2_util/geometry_utils.hpp"
 #include "nav2_util/robot_utils.hpp"
@@ -79,7 +80,7 @@ nav2_util::CallbackReturn TribotController::on_configure(const rclcpp_lifecycle:
 
   blackboard_ = BT::Blackboard::create();
 
-  // TODO: Put items on the balckboard
+  // TODO(harshil): Put items on the balckboard
   blackboard_->set<rclcpp::Node::SharedPtr>("node", client_node_);
 
   std::string controller_bt_xml_filename;
@@ -140,12 +141,11 @@ nav2_util::CallbackReturn TribotController::on_shutdown(const rclcpp_lifecycle::
 
 void TribotController::followPath()
 {
-
 }
 
 void TribotController::initializeBlackboard(std::shared_ptr<const Action::Goal> goal)
 {
-  //TODO: Update goals on the blackboard
+  // TODO(harshil): Update goals on the blackboard
 }
 
-} // namespace tribot_controller
+}  // namespace tribot_controller
