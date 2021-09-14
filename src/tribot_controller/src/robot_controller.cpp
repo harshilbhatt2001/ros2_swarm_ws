@@ -146,6 +146,7 @@ void TribotController::followPath()
 void TribotController::initializeBlackboard(std::shared_ptr<const Action::Goal> goal)
 {
   // TODO(harshil): Update goals on the blackboard
+  (void)goal;
 }
 
 }  // namespace tribot_controller
