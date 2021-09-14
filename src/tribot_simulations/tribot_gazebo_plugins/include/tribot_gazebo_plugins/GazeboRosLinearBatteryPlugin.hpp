@@ -1,13 +1,16 @@
-#ifndef LINEAR_BATTERY_PLUGIN_HPP
-#define LINEAR_BATTERY_PLUGIN_HPP
+#ifndef TRIBOT_GAZEBO_PLUGINS__GAZEBOROSLINEARBATTERYPLUGIN_HPP_
+#define TRIBOT_GAZEBO_PLUGINS__GAZEBOROSLINEARBATTERYPLUGIN_HPP_
+
+#include <sdf/sdf.hh>
 
 #include <string>
 #include <map>
+#include <memory>
 
-#include <sdf/sdf.hh>
 #include "gazebo/common/Plugin.hh"
 #include "gazebo/common/CommonTypes.hh"
 #include "gazebo/physics/physics.hh"
+
 #include "gazebo_ros/node.hpp"
 
 #include "rclcpp/rclcpp.hpp"
@@ -124,10 +127,8 @@ public:
   common::Time last_update_time_;
   /// \brief Pointer to update connection event
   event::ConnectionPtr update_connection_;
-
-
 };
 
-} // namespace gazebo
+}  // namespace gazebo
 
-#endif /* LINEAR_BATTERY_PLUGIN_HPP */
+#endif  // TRIBOT_GAZEBO_PLUGINS__GAZEBOROSLINEARBATTERYPLUGIN_HPP_

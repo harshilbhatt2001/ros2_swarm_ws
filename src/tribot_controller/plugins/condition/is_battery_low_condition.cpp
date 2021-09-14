@@ -49,7 +49,7 @@ void IsBatteryLowCondition::batteryCallback(sensor_msgs::msg::BatteryState::Shar
   }
 }
 
-} // namespace nav2_behavior_tree
+}  // namespace nav2_behavior_tree
 
 #include "behaviortree_cpp_v3/bt_factory.h"
 BT_REGISTER_NODES(factory)

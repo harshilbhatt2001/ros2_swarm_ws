@@ -1,4 +1,6 @@
-#include "tribot_gazebo/include/tribot_drive.hpp"
+#include "tribot_gazebo/tribot_drive.hpp"
+
+#include <memory>
 
 using namespace std::chrono_literals;
 
@@ -48,7 +50,7 @@ void TribotDrive::update_cmd_vel(double linear, double angular)
 
 void TribotDrive::update_callback()
 {
-  //TODO
+  // TODO(harshil): this
 }
 
 int main(int argc, char ** argv)

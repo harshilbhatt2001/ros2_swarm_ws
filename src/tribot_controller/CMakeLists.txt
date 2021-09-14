@@ -17,21 +17,32 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(nav2_core REQUIRED)
+find_package(nav2_behavior_tree REQUIRED)
+find_package(nav2_common REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(nav2_msgs REQUIRED)
+find_package(tribot_bt REQUIRED)
 find_package(behaviortree_cpp_v3 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(nav2_util REQUIRED)
 
-set(executable_name robot_controller)
-set(library_name ${executable_name}_core)
+nav2_package()
 
 include_directories(
   include
 )
+
+set(executable_name robot_controller)
+
+add_executable(${executable_name}
+  src/main.cpp
+)
+
+set(library_name ${executable_name}_core)
 
 add_library(${library_name} SHARED
   src/robot_controller.cpp
@@ -40,6 +51,9 @@ add_library(${library_name} SHARED
 
 set(dependencies
   rclcpp
+  rclcpp_action
+  rclcpp_lifecycle
+  tribot_bt
   geometry_msgs
   sensor_msgs
   nav2_msgs
@@ -47,6 +61,9 @@ set(dependencies
   tf2
   tf2_ros
   tf2_geometry_msgs
+  nav2_core
+  nav2_common
+  nav2_behavior_tree
   nav2_util
 )
 
@@ -70,6 +87,11 @@ foreach(bt_plugin ${plugin_libs})
   target_compile_definitions(${bt_plugin} PRIVATE BT_PLUGIN_EXPORT)
 endforeach()
 
+ament_target_dependencies(${executable_name}
+  ${dependencies}
+)
+target_link_libraries(${executable_name} ${library_name})
+
 ament_target_dependencies(${library_name}
   ${dependencies}
 )
@@ -81,10 +103,15 @@ install(TARGETS ${library_name}
   RUNTIME DESTINATION bin
 )
 
+install(TARGETS ${executable_name}
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
+)
+
 install(DIRECTORY include/
   DESTINATION include/
 )
 
+install(DIRECTORY behavior_trees DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

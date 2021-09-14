@@ -1,5 +1,5 @@
-#ifndef TRIBOT_FAKE_NODE_HPP
-#define TRIBOT_FAKE_NODE_HPP
+#ifndef TRIBOT_FAKE_NODE__TRIBOT_FAKE_NODE_HPP_
+#define TRIBOT_FAKE_NODE__TRIBOT_FAKE_NODE_HPP_
 
 #include <tf2/LinearMath/Quaternion.h>
 #include <rclcpp/rclcpp.hpp>
@@ -19,19 +19,19 @@ public:
   ~TribotFake();
 
 private:
-  ///\brief ROS time
+  /// \brief ROS time
   rclcpp::Time last_cmd_vel_time_;
   rclcpp::Time prev_update_time_;
 
-  ///\brief ROS timer
+  /// \brief ROS timer
   rclcpp::TimerBase::SharedPtr update_timer_;
 
-  ///\brief ROS publishers
+  /// \brief ROS publishers
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub_;
   rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_states_pub_;
   rclcpp::Publisher<tf2_msgs::msg::TFMessage>::SharedPtr tf_pub_;
 
-  ///\brief ROS subscribers
+  /// \brief ROS subscribers
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
   nav_msgs::msg::Odometry odom_;
   sensor_msgs::msg::JointState joint_states_;
@@ -48,7 +48,7 @@ private:
   double wheel_seperation_;
   double wheel_radius_;
 
-  ///\brief Function prototypes
+  /// \brief Function prototypes
   void init_parameters();
   void init_variables();
   void command_velocity_callback(const geometry_msgs::msg::Twist::SharedPtr cmd_vel_msg);
@@ -56,7 +56,6 @@ private:
   bool update_odometry(const rclcpp::Duration & diff_time);
   void update_joint_state();
   void update_tf(geometry_msgs::msg::TransformStamped & odom_tf);
-
 };
 
-#endif /* TRIBOT_FAKE_NODE_HPP */
+#endif  // TRIBOT_FAKE_NODE__TRIBOT_FAKE_NODE_HPP_

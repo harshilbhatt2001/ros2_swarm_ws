@@ -3,6 +3,8 @@
 #include <gazebo/physics/Model.hh>
 #include <gazebo/common/Battery.hh>
 
+#include <string>
+
 namespace gazebo
 {
 RosBatteryConsumerPlugin::RosBatteryConsumerPlugin()
@@ -62,4 +64,4 @@ void RosBatteryConsumerPlugin::UpdatePowerLoad(double _powerload)
   }
 }
 GZ_REGISTER_MODEL_PLUGIN(RosBatteryConsumerPlugin)
-} // namespace gazebo
+}  // namespace gazebo

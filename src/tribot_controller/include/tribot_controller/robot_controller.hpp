@@ -1,5 +1,5 @@
-#ifndef TRIBOT_CONTROLLER__TRIBOT_CONTROLLER_HPP_
-#define TRIBOT_CONTROLLER__TRIBOT_CONTROLLER_HPP_
+#ifndef TRIBOT_CONTROLLER__ROBOT_CONTROLLER_HPP_
+#define TRIBOT_CONTROLLER__ROBOT_CONTROLLER_HPP_
 
 #include <memory>
 #include <string>
@@ -32,7 +32,7 @@ protected:
   nav2_util::CallbackReturn on_cleanup(const rclcpp_lifecycle::State & state) override;
   nav2_util::CallbackReturn on_shutdown(const rclcpp_lifecycle::State & state) override;
 
-  // TODO: Add a custom action for clustering
+  // TODO(harshil): Add a custom action for clustering
   using Action = nav2_msgs::action::FollowPath;
 
   using ActionServer = nav2_util::SimpleActionServer<Action>;
@@ -57,7 +57,7 @@ protected:
 
   bool use_bond_;
 };
-} // namespace tribot_controller
+}  // namespace tribot_controller
 
 
-#endif // TRIBOT_CONTROLLER__TRIBOT_CONTROLLER_HPP_
+#endif  // TRIBOT_CONTROLLER__ROBOT_CONTROLLER_HPP_

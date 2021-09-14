@@ -33,6 +33,6 @@ public:
   }
 };
 
-} // namespace nav2_behavior_tree
+}  // namespace nav2_behavior_tree
 
-#endif // TRIBOT_CONTROLLER__PLUGINS__ACTION__FOLLOW_PATH_ACTION_HPP_
+#endif  // TRIBOT_CONTROLLER__PLUGINS__ACTION__FOLLOW_PATH_ACTION_HPP_

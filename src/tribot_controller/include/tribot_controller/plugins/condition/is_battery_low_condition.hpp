@@ -50,6 +50,6 @@ private:
   bool is_battery_low_;
 };
 
-} // namespace nav2_behavior_tree
+}  // namespace nav2_behavior_tree
 
-#endif // TRIBOT_CONTROLLER__PLUGINS__CONDITION__IS_BATTERY_LOW_CONDITION_HPP_
+#endif  // TRIBOT_CONTROLLER__PLUGINS__CONDITION__IS_BATTERY_LOW_CONDITION_HPP_

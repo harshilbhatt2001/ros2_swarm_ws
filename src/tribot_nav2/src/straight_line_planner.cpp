@@ -1,3 +1,6 @@
+#include <string>
+#include <memory>
+
 #include "nav2_util/node_utils.hpp"
 
 #include "tribot_nav2/straight_line_planner.hpp"
