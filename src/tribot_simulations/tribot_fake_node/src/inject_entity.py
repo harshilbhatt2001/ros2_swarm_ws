@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 
-import os, sys
+import os
+import sys
 
 import rclpy
 import xacro
-import transformations
 from ament_index_python.packages import get_package_share_directory
 from gazebo_msgs.srv import SpawnEntity
 from geometry_msgs.msg import Pose
+
 
 def inject(xml: str, initial_pose: Pose):
     rclpy.init()
@@ -17,7 +18,7 @@ def inject(xml: str, initial_pose: Pose):
     if not client.service_is_ready():
         node.get_logger().info('waiting for spawn_entity service...')
         client.wait_for_service()
-    
+
     request = SpawnEntity.Request()
     request.xml = xml
     request.initial_pose = initial_pose
@@ -27,10 +28,11 @@ def inject(xml: str, initial_pose: Pose):
     if future.result() is not None:
         node.get_logger().info('response: %r' % future.result())
     else:
-        raise RuntimeError('exception while calling service %r' %future.exception())
-    
+        raise RuntimeError('exception while calling service %r' % future.exception())
+
     node.destroy_node()
     rclpy.shutdown()
+
 
 if len(sys.argv) < 3:
     print('usage: ros2 run tribot_fake_node inject_entity.py -- initial_x initial_y initial_z')

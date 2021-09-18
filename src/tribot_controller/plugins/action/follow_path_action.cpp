@@ -21,4 +21,4 @@ void FollowPathAction::on_tick()
 }
 
 
-} // namespace nav2_behavior_tree
+}  // namespace nav2_behavior_tree

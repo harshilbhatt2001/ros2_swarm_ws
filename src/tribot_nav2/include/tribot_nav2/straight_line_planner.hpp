@@ -1,5 +1,8 @@
-#ifndef TRIBOT_STRAIGHT_LINE_PLANNER_HPP
-#define TRIBOT_STRAIGHT_LINE_PLANNER_HPP
+#ifndef TRIBOT_NAV2__STRAIGHT_LINE_PLANNER_HPP_
+#define TRIBOT_NAV2__STRAIGHT_LINE_PLANNER_HPP_
+
+#include <string>
+#include <memory>
 
 #include "rclcpp/rclcpp.hpp"
 #include "geometry_msgs/msg/point.hpp"
@@ -39,6 +42,6 @@ private:
   double interpolation_resolution_;
 };
 
-}   // namespace nav2_straight_line_planner
+}  // namespace straight_line_planner
 
-#endif // TRIBOT_STRAIGHT_LINE_PLANNER_HPP
+#endif  // TRIBOT_NAV2__STRAIGHT_LINE_PLANNER_HPP_

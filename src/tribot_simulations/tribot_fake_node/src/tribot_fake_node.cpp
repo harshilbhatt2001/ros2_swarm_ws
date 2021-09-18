@@ -1,5 +1,8 @@
 #include <tribot_fake_node/tribot_fake_node.hpp>
 
+#include <string>
+#include <memory>
+
 using namespace std::chrono_literals;
 
 TribotFake::TribotFake()
@@ -45,7 +48,6 @@ void TribotFake::init_parameters()
   this->get_parameter_or<std::string>("base_frame", odom_.child_frame_id, "base_footprint");
   this->get_parameter_or<double>("wheels.seperation", wheel_seperation_, 0.31);
   this->get_parameter_or<double>("wheels.radius", wheel_radius_, 0.10);
-
 }
 
 void TribotFake::init_variables()

@@ -5,9 +5,12 @@
 #include <gazebo/plugins/LinearBatteryPlugin.hh>
 #include <gazebo/physics/Model.hh>
 #include <gazebo/common/Plugin.hh>
-#include "gazebo_ros/node.hpp"
 #include <gazebo/common/Battery.hh>
 
+#include <string>
+#include <memory>
+
+#include "gazebo_ros/node.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/battery_state.hpp"
 
@@ -70,7 +73,7 @@ void GazeboRosLinearBatteryPlugin::Load(physics::ModelPtr model, sdf::ElementPtr
   this->e0 = _sdf->Get<double>("open_circuit_voltage_constant_coef");
   this->e1 = _sdf->Get<double>("open_circuit_voltage_linear_coef");
   this->q0 = _sdf->Get<double>("initial_charge");
-  //this->qt    = _sdf->Get<double>("charge_rate");
+  // this->qt    = _sdf->Get<double>("charge_rate");
   this->c = _sdf->Get<double>("capacity");
   this->r = _sdf->Get<double>("resistance");
   this->tau = _sdf->Get<double>("smooth_current_tau");
@@ -141,12 +144,12 @@ double GazeboRosLinearBatteryPlugin::OnUpdateVoltage(const common::BatteryPtr & 
 
   this->et = this->e0 + this->e1 * (1 - this->q / this->c) - this->r * this->ismooth;
 
-  // TODO: Turn off bot when battery is 0
+  // TODO(harshil): Turn off bot when battery is 0
   // Turn off the motor
   if (this->q <= 0) {
     this->sim_time_now = this->world->SimTime();
     this->q = 0;
-    //TODO: Motor control
+    // TODO(harshil): Motor control
   } else if (this->q >= this->c) {
     this->q = this->c;
   }
@@ -173,7 +176,7 @@ double GazeboRosLinearBatteryPlugin::OnUpdateVoltage(const common::BatteryPtr & 
   battery_state.percentage = this->q / this->q0;
   battery_state.voltage = this->battery->Voltage();
   battery_state.design_capacity = this->q0;
-  //TODO: Add mode data
+  // TODO(harshil): Add mode data
 
   impl_->battery_state_pub_->publish(battery_state);
 
@@ -181,11 +184,10 @@ double GazeboRosLinearBatteryPlugin::OnUpdateVoltage(const common::BatteryPtr & 
   impl_->last_update_time_ = this->sim_time_now;
 
   return et;
-
 }
 
 void GazeboRosLinearBatteryPlugin::PublishBatteryState(const common::UpdateInfo & info)
 {
 }
 GZ_REGISTER_MODEL_PLUGIN(GazeboRosLinearBatteryPlugin)
-} // namespace gazebo
+}  // namespace gazebo

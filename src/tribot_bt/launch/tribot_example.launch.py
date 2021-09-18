@@ -1,12 +1,10 @@
-import os
-
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+
 
 def generate_launch_description():
     tribot_bt_dir = get_package_share_directory('tribot_bt')
@@ -19,7 +17,7 @@ def generate_launch_description():
 
     stdout_linebuf_envvar = SetEnvironmentVariable(
         'RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED', '1')
-    
+
     lifecycle_nodes = ['main']
 
     main_cmd = Node(
@@ -44,8 +42,7 @@ def generate_launch_description():
         output='screen'
             )
 
-
-    lifecycle_node_cmd  =  Node(
+    lifecycle_node_cmd = Node(
           package='nav2_lifecycle_manager',
           executable='lifecycle_manager',
           name='lifecycle_manager_navigation',
@@ -53,7 +50,7 @@ def generate_launch_description():
           parameters=[{'use_sim_time': True},
                       {'autostart': True},
                       {'node_names': lifecycle_nodes}])
-    
+
     ld = LaunchDescription()
 
     # Set environment variables
