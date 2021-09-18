@@ -1,5 +1,5 @@
-#ifndef TRIBOT_DRIVE_HPP
-#define TRIBOT_DRIVE_HPP
+#ifndef TRIBOT_GAZEBO__TRIBOT_DRIVE_HPP_
+#define TRIBOT_GAZEBO__TRIBOT_DRIVE_HPP_
 
 #include <geometry_msgs/msg/twist.hpp>
 #include <nav_msgs/msg/odometry.hpp>
@@ -23,29 +23,30 @@
 #define TRIBOT_RIGHT_TURN 2
 #define TRIBOT_LEFT_TURN 3
 
-class TribotDrive : public rclcpp::Node 
+class TribotDrive : public rclcpp::Node
 {
 public:
-    TribotDrive();
-    ~TribotDrive();
+  TribotDrive();
+  ~TribotDrive();
+
 private:
-    ///\brief: ROS topic publisher
-    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub_;
+  /// \brief: ROS topic publisher
+  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub_;
 
-    ///\brief: ROS topic subscriber
-    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
+  /// \brief: ROS topic subscriber
+  rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
 
-    ///\brief: variables
-    double robot_pose_;
-    double prev_robot_pose_;
+  /// \brief: variables
+  double robot_pose_;
+  double prev_robot_pose_;
 
-    ///\brief: ROS timer 
-    rclcpp::TimerBase::SharedPtr update_timer_;
+  /// \brief: ROS timer
+  rclcpp::TimerBase::SharedPtr update_timer_;
 
-    ///\brief prototypes
-    void update_callback();
-    void update_cmd_vel(double linear, double angular);
-    void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg);
+  /// \brief prototypes
+  void update_callback();
+  void update_cmd_vel(double linear, double angular);
+  void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg);
 };
 
-#endif /* TRIBOT_DRIVE_HPP */
+#endif  // TRIBOT_GAZEBO__TRIBOT_DRIVE_HPP_

@@ -10,7 +10,6 @@ RUN apt-get update \
       ros-foxy-nav2-bringup \
       ros-foxy-turtlebot3* \
       ros-foxy-dynamixel-sdk \
-      python3-pykdl \
       tmux \
    #
    # Clean up
