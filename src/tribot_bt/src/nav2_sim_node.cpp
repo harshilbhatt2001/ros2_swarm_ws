@@ -37,12 +37,15 @@ private:
     const rclcpp_action::GoalUUID & uuid,
     std::shared_ptr<const NavigateToPose::Goal> goal)
   {
+    (void) uuid;
+    (void) goal;
     return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
   }
 
   rclcpp_action::CancelResponse handle_cancel(
     const std::shared_ptr<GoalHandleNavigateToPose> goal_handle)
   {
+    (void) goal_handle;
     RCLCPP_INFO(this->get_logger(), "Received request to cancel goal");
     return rclcpp_action::CancelResponse::ACCEPT;
   }
