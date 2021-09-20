@@ -28,16 +28,16 @@ def generate_robot_list(robots_file):
 
 
 def generate_urdf():
-    urdf_file_name = 'tribot.urdf.xacro'
+    urdf_file_name = 'turtlebot3_waffle.urdf'
     doc = xacro.parse(open(os.path.join(
-        get_package_share_directory('tribot_description'), 'urdf', urdf_file_name)))
+        get_package_share_directory('turtlebot3_description'), 'urdf', urdf_file_name)))
     xacro.process_doc(doc)
     urdf = doc.toxml()
     return urdf
 
 
 def generate_launch_description():
-    urdf = os.path.join(get_package_share_directory('tribot_description'), 'urdf', 'tribot.urdf')
+    urdf = os.path.join(get_package_share_directory('turtlebot3_description'), 'urdf', 'turtlebot3_waffle.urdf')
     robots = generate_robot_list(os.path.join(get_package_share_directory('tribot_description'),
                                               'params', 'spawn_params.yaml'))
     spawn_robots_cmds = []
