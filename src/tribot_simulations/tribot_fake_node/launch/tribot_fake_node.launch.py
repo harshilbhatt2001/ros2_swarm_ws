@@ -30,10 +30,13 @@ def generate_launch_description():
     use_tf_static = LaunchConfiguration('use_tf_static', default='false')
 
     urdf_file_name = 'turtlebot3_waffle.urdf'
-    doc = xacro.parse(open(os.path.join(
-        get_package_share_directory('turtlebot3_description'), 'urdf', urdf_file_name)))
-    xacro.process_doc(doc)
-    urdf = doc.toxml()
+    # doc = xacro.parse(open(os.path.join(
+    #     get_package_share_directory('turtlebot3_description'), 'urdf', urdf_file_name)))
+    # xacro.process_doc(doc)
+    # urdf = doc.toxml()
+    urdf = os.path.join(
+    get_package_share_directory('turtlebot3_description'), 'urdf', urdf_file_name)
+
 
     gazebo_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('gazebo_ros'),
@@ -76,9 +79,9 @@ def generate_launch_description():
             name='robot_state_publisher',
             output='screen',
             parameters=[
-                    {'use_sim_time': use_sim_time},
-                    {'use_tf_static': use_tf_static},
-                    {'robot_description': urdf}
+                    {'use_sim_time': use_sim_time}
+                    # {'use_tf_static': use_tf_static},
+                    # {'robot_description': urdf}
                 ],
             arguments=[urdf]
             )
@@ -113,7 +116,7 @@ def generate_launch_description():
         ),
 
         gazebo_launch,
-        rviz_launch,
+        # rviz_launch,
         # start_gazebo_server,
         # start_gazebo_client,
 

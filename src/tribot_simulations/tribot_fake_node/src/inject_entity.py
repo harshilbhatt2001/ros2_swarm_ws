@@ -49,4 +49,7 @@ doc = xacro.parse(open(os.path.join(
 xacro.process_doc(doc)
 urdf = doc.toxml()
 
+# urdf = os.path.join(
+#     get_package_share_directory('turtlebot3_description'), 'urdf', urdf_file_name)
+
 inject(urdf, p)
