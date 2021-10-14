@@ -46,7 +46,7 @@ endforeach()
 add_executable(nav2_sim_node src/nav2_sim_node.cpp)
 ament_target_dependencies(nav2_sim_node ${dependencies})
 
-install(DIRECTORY launch behaviour_trees_xml config DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY launch behaviour_trees_xml DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS
   nav2_sim_node

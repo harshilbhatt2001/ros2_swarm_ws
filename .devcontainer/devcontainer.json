@@ -39,6 +39,7 @@
 		"twxs.cmake",
 		"yzhang.markdown-all-in-one",
 		"ms-vscode.cmake-tools",
-		"redhat.vscode-xml"
+		"redhat.vscode-xml",
+		"actboy168.tasks"
 	]
 }
