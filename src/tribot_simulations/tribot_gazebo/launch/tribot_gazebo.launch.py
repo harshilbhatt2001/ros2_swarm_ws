@@ -10,10 +10,10 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     # pkg_share = FindPackageShare(package='tribot_description').find('tribot_description')
-    pkg_share = get_package_share_directory('tribot_description')
-    default_model_path = os.path.join(pkg_share, 'urdf', 'tribot.urdf.xacro')
+    urdf_file_name = 'turtlebot3_waffle.urdf'
+    pkg_share = get_package_share_directory('turtlebot3_description')
+    default_model_path = os.path.join(pkg_share, 'urdf', urdf_file_name)
 
-    urdf_file_name = 'tribot.urdf.xacro'
     doc = xacro.parse(open(os.path.join(
         get_package_share_directory('tribot_description'), 'urdf', urdf_file_name)))
     xacro.process_doc(doc)

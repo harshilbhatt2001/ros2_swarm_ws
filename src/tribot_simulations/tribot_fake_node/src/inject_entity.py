@@ -43,10 +43,13 @@ p.position.x = float(sys.argv[1])
 p.position.y = float(sys.argv[2])
 p.position.z = float(sys.argv[3])
 
-urdf_file_name = 'tribot.urdf'
+urdf_file_name = 'turtlebot3_waffle.urdf'
 doc = xacro.parse(open(os.path.join(
-    get_package_share_directory('tribot_description'), 'urdf', urdf_file_name)))
+    get_package_share_directory('turtlebot3_description'), 'urdf', urdf_file_name)))
 xacro.process_doc(doc)
 urdf = doc.toxml()
+
+# urdf = os.path.join(
+#     get_package_share_directory('turtlebot3_description'), 'urdf', urdf_file_name)
 
 inject(urdf, p)

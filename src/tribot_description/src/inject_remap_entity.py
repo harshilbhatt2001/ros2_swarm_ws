@@ -9,9 +9,9 @@ import rclpy
 
 
 def generate_urdf():
-    urdf_file_name = 'tribot.urdf.xacro'
+    urdf_file_name = 'turtlebot3_waffle.urdf'
     doc = xacro.parse(open(os.path.join(
-        get_package_share_directory('tribot_description'), 'urdf', urdf_file_name)))
+        get_package_share_directory('turtlebot3_description'), 'urdf', urdf_file_name)))
     xacro.process_doc(doc)
     urdf = doc.toxml()
     return urdf
@@ -53,8 +53,8 @@ def main():
     # with open("/dev/null/tribot" + str(random.randint(0, 100)) + ".urdf", "w") as urdf:
     #    print(urdf_content, file=urdf)
     # urdf_file_path = args.robot_urdf
-    urdf_file_path = os.path.join(get_package_share_directory('tribot_description'),
-                                  'urdf', 'tribot.urdf')
+    urdf_file_path = os.path.join(get_package_share_directory('turtlebot3_description'),
+                                  'urdf', 'turtlebot3_waffle.urdf')
     print(urdf_file_path)
 
     # remap tranform `/tf` topic so each bot has it's own.

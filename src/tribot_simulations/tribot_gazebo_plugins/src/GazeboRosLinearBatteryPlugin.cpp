@@ -45,7 +45,7 @@ GazeboRosLinearBatteryPlugin::~GazeboRosLinearBatteryPlugin()
 void GazeboRosLinearBatteryPlugin::Load(physics::ModelPtr model, sdf::ElementPtr _sdf)
 {
   const gazebo_ros::QoS & qos = impl_->ros_node_->get_qos();
-
+  (void) qos;
 
   if (_sdf->HasElement("namespace")) {
     impl_->robot_namespace_ = _sdf->Get<std::string>("namespace");
