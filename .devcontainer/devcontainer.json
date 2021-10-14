@@ -10,8 +10,6 @@
 	"runArgs": [
 		"--gpus=all",
 		"--device=/dev/nvidia0", 
-		"--device=/dev/nvidia-uvm",
-		"--device=/dev/nvidia-uvm-tools", 
 		"--device=/dev/nvidiactl",
 		"--network=host",
 		"--cap-add=SYS_PTRACE",
@@ -41,6 +39,7 @@
 		"twxs.cmake",
 		"yzhang.markdown-all-in-one",
 		"ms-vscode.cmake-tools",
-		"redhat.vscode-xml"
+		"redhat.vscode-xml",
+		"actboy168.tasks"
 	]
 }

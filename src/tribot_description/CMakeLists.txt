@@ -17,10 +17,17 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclpy REQUIRED)
+
 
 install(
-  DIRECTORY urdf
+  DIRECTORY urdf launch params
   DESTINATION share/${PROJECT_NAME}
+)
+
+install(
+  PROGRAMS src/inject_remap_entity.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
