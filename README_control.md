@@ -1,4 +1,4 @@
-#h1 Steps for having independednt control of each bot
+# Steps for having independednt control of each bot
 * Launch the multi_tb3_simulation_launch.py in the bringup folder
 * Open a new terminal and write command $ ros2 run turtlebot3_example turtlebot_position_control --ros args -r __ns:=/robot<n>
 * Where n is the robot you want to control it.
