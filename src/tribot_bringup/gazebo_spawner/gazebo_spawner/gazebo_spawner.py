@@ -50,11 +50,10 @@ def main():
 
     # TODO(harshil): Add correct path from #18
     sdf_file_path = os.path.join(
-        get_package_share_directory('turtlebot3_gazebo',
-                                    'models',
-                                    'turtlebot3_waffle',
-                                    'model.sdf')
-    )
+        get_package_share_directory('turtlebot3_gazebo'),
+        'models',
+        'turtlebot3_waffle',
+        'model.sdf')
 
     # We need to remap the transform (/tf) topic so each robot has its own.
     # We do this by adding `ROS argument entries` to the sdf file for

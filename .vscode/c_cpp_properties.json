@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "Linux-Docker",
             "includePath": [
                 "${workspaceFolder}/**",
                 "/opt/ros/foxy/include/**",
@@ -15,7 +15,24 @@
             "cppStandard": "c++14",
             "intelliSenseMode": "clang-x64",
             "configurationProvider": "ms-vscode.cmake-tools"
-        }
+        },
+        {
+            "name": "Linux-local",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/ros2/foxy/include/**",
+                "/usr/include/gazebo-11/**",
+                "/usr/include/ignition/**",
+                "/usr/include/sdformat-9.5/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c99",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "clang-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }    
+           
     ],
     "version": 4
 }

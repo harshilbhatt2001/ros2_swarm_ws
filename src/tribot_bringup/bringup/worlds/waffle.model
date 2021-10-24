@@ -43,14 +43,14 @@
       </ode>
     </physics>
 
-    <model name="turtlebot3_world">
+    <model name="tribot3_world">
       <static>1</static>
       <include>
-        <uri>model://turtlebot3_world</uri>
+        <uri>model://tribot3_world</uri>
       </include>
     </model>
 
-    <model name="turtlebot3_waffle"> 
+    <model name="tribot3_waffle"> 
       <pose>-2.0 -0.5 0.01 0.0 0.0 0.0</pose>
 
       <link name="base_footprint"/>
@@ -83,7 +83,7 @@
           <pose>-0.064 0 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://turtlebot3_waffle/meshes/waffle_base.dae</uri>
+              <uri>model://tribot3_waffle/meshes/waffle_base.dae</uri>
               <scale>0.001 0.001 0.001</scale>
             </mesh>
           </geometry>
@@ -136,7 +136,7 @@
               </z>
             </linear_acceleration>
           </imu>
-          <plugin name="turtlebot3_imu" filename="libgazebo_ros_imu_sensor.so">
+          <plugin name="tribot3_imu" filename="libgazebo_ros_imu_sensor.so">
             <ros>
               <!-- <namespace>/tb3</namespace> -->
               <remapping>~/out:=imu</remapping>
@@ -173,7 +173,7 @@
           <pose>-0.064 0 0.121 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://turtlebot3_waffle/meshes/lds.dae</uri>
+              <uri>model://tribot3_waffle/meshes/lds.dae</uri>
               <scale>0.001 0.001 0.001</scale>
             </mesh>
           </geometry>
@@ -204,7 +204,7 @@
               <stddev>0.01</stddev>
             </noise>
           </ray>
-          <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
+          <plugin name="tribot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
             <ros>
                 <!-- <namespace>/tb3</namespace> -->
                 <remapping>~/out:=scan</remapping>
@@ -266,7 +266,7 @@
           <pose>0.0 0.144 0.023 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://turtlebot3_waffle/meshes/left_tire.dae</uri>
+              <uri>model://tribot3_waffle/meshes/left_tire.dae</uri>
               <scale>0.001 0.001 0.001</scale>
             </mesh>
           </geometry>
@@ -324,7 +324,7 @@
           <pose>0.0 -0.144 0.023 0 0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://turtlebot3_waffle/meshes/right_tire.dae</uri>
+              <uri>model://tribot3_waffle/meshes/right_tire.dae</uri>
               <scale>0.001 0.001 0.001</scale>
             </mesh>
           </geometry>
@@ -399,7 +399,7 @@
         </collision>
       </link>
 
-      <link name="camera_link">
+      <!-- <link name="camera_link">
         <inertial>
           <pose>0.069 -0.047 0.107 0 0 0</pose>
           <inertia>
@@ -423,7 +423,7 @@
 
         <pose>0.069 -0.047 0.107 0 0 0</pose>
 
-        <!-- <sensor name="intel_realsense_r200_depth" type="depth">
+        <sensor name="intel_realsense_r200_depth" type="depth">
           <always_on>1</always_on>
           <update_rate>5</update_rate>
           <pose>0.064 -0.047 0.107 0 0 0</pose>
@@ -438,7 +438,7 @@
             <min_depth>0.001</min_depth>
             <max_depth>5.0</max_depth>
           </plugin>
-        </sensor> -->
+        </sensor>
 
         <collision name="collision">
           <pose>0 0.047 -0.005 0 0 0</pose>
@@ -449,7 +449,7 @@
           </geometry>
         </collision>
         <pose>0.069 -0.047 0.107 0 0 0</pose>
-      </link>
+      </link> -->
 
       <joint name="base_joint" type="fixed">
         <parent>base_footprint</parent>
@@ -512,7 +512,7 @@
         </axis>
       </joint>
 
-      <plugin name="turtlebot3_diff_drive" filename="libgazebo_ros_diff_drive.so">
+      <plugin name="tribot3_diff_drive" filename="libgazebo_ros_diff_drive.so">
 
         <ros>
           <!-- <namespace>/tb3</namespace> -->
@@ -545,7 +545,7 @@
 
       </plugin>
 
-      <plugin name="turtlebot3_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
+      <plugin name="tribot3_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
         <ros>
           <!-- <namespace>/tb3</namespace> -->
             <remapping>~/out:=joint_states</remapping>

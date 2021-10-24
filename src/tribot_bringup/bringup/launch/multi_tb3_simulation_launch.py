@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """
-Example for spawing multiple robots in Gazebo.
+Example for spawing robots in Gazebo.
 
 This is an example on how to create a launch file for spawning multiple robots into Gazebo
 and launch multiple instances of the navigation stack, each controlling one robot.
@@ -34,13 +34,18 @@ from launch.substitutions import LaunchConfiguration, TextSubstitution
 
 def generate_launch_description():
     # Get the launch directory
-    bringup_dir = get_package_share_directory('nav2_bringup')
+    bringup_dir = get_package_share_directory('bringup')
+    nav2_bringup_dir = get_package_share_directory('nav2_bringup')
     launch_dir = os.path.join(bringup_dir, 'launch')
 
     # Names and poses of the robots
     robots = [
         {'name': 'robot1', 'x_pose': 0.0, 'y_pose': 0.5, 'z_pose': 0.01},
-        {'name': 'robot2', 'x_pose': 0.0, 'y_pose': -0.5, 'z_pose': 0.01}]
+        {'name': 'robot2', 'x_pose': 0.0, 'y_pose': -0.5, 'z_pose': 0.01}
+        # {'name': 'robot3', 'x_pose': 0.5, 'y_pose': -0.5, 'z_pose': 0.01},
+        # {'name': 'robot4', 'x_pose': -0.5, 'y_pose': -0.5, 'z_pose': 0.01},
+        # {'name': 'robot5', 'x_pose': 1.0, 'y_pose': -0.5, 'z_pose': 0.01}
+    ]
 
     # Simulation settings
     world = LaunchConfiguration('world')
@@ -59,7 +64,9 @@ def generate_launch_description():
     # Declare the launch arguments
     declare_world_cmd = DeclareLaunchArgument(
         'world',
-        default_value=os.path.join(bringup_dir, 'worlds', 'world_only.model'),
+        # Crashes for some reason
+        # default_value=os.path.join(bringup_dir, 'worlds', 'world_only.model'),
+        default_value=os.path.join(bringup_dir, 'worlds', 'waffle.model'),
         description='Full path to world file to load')
 
     declare_simulator_cmd = DeclareLaunchArgument(
@@ -69,7 +76,7 @@ def generate_launch_description():
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
-        default_value=os.path.join(bringup_dir, 'maps', 'turtlebot3_world.yaml'),
+        default_value=os.path.join(bringup_dir, 'maps', 'tribot3_world.yaml'),
         description='Full path to map file to load')
 
     declare_robot1_params_file_cmd = DeclareLaunchArgument(
@@ -121,12 +128,12 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource(os.path.join(bringup_dir, 'launch',
                                                            'spawn_tb3_launch.py')),
                 launch_arguments={
-                                  'x_pose': TextSubstitution(text=str(robot['x_pose'])),
-                                  'y_pose': TextSubstitution(text=str(robot['y_pose'])),
-                                  'z_pose': TextSubstitution(text=str(robot['z_pose'])),
-                                  'robot_name': robot['name'],
-                                  'turtlebot_type': TextSubstitution(text='waffle')
-                                  }.items()))
+                    'x_pose': TextSubstitution(text=str(robot['x_pose'])),
+                    'y_pose': TextSubstitution(text=str(robot['y_pose'])),
+                    'z_pose': TextSubstitution(text=str(robot['z_pose'])),
+                    'robot_name': robot['name']
+                    # 'tribot_type': TextSubstitution(text='waffle')
+                    }.items()))
 
     # Define commands for launching the navigation instances
     nav_instances_cmds = []
@@ -144,7 +151,7 @@ def generate_launch_description():
                                   'rviz_config': rviz_config_file}.items()),
 
             IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(os.path.join(bringup_dir,
+                PythonLaunchDescriptionSource(os.path.join(nav2_bringup_dir,
                                                            'launch',
                                                            'tb3_simulation_launch.py')),
                 launch_arguments={'namespace': robot['name'],

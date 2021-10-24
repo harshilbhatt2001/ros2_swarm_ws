@@ -60,7 +60,9 @@ def generate_launch_description():
     # Declare the launch arguments
     declare_world_cmd = DeclareLaunchArgument(
         'world',
+        # Crashes for some reason
         default_value=os.path.join(bringup_dir, 'worlds', 'world_only.model'),
+        # default_value=os.path.join(bringup_dir, 'worlds', 'waffle.model'),
         description='Full path to world file to load')
 
     declare_simulator_cmd = DeclareLaunchArgument(
@@ -70,7 +72,7 @@ def generate_launch_description():
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
-        default_value=os.path.join(bringup_dir, 'maps', 'turtlebot3_world.yaml'),
+        default_value=os.path.join(bringup_dir, 'maps', 'tribot3_world.yaml'),
         description='Full path to map file to load')
 
     declare_robot1_params_file_cmd = DeclareLaunchArgument(
@@ -126,7 +128,7 @@ def generate_launch_description():
                                   'y_pose': TextSubstitution(text=str(robot['y_pose'])),
                                   'z_pose': TextSubstitution(text=str(robot['z_pose'])),
                                   'robot_name': robot['name'],
-                                  'turtlebot_type': TextSubstitution(text='waffle')
+                                  'tribot_type': TextSubstitution(text='waffle')
                                   }.items()))
 
     # Define commands for launching the navigation instances

@@ -8,7 +8,7 @@ RUN apt-get update \
       ros-foxy-joint-state-publisher \
       ros-foxy-navigation2 \
       ros-foxy-nav2-bringup \
-      ros-foxy-turtlebot3* \
+      #ros-foxy-turtlebot3* \
       ros-foxy-dynamixel-sdk \
       ros-foxy-nav2-gazebo-spawner \
       tmux \
